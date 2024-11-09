@@ -35,6 +35,7 @@ async function validateUserAuth(request, response, next){
 	let decodedData = decodeJWT(providedToken);
 	console.log(decodedData);
 	if (decodedData.userId){
+		request.authUserData = decodedData;
 		next();
 	} else {
 		return response.status(403).json({
